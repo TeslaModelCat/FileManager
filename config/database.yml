@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  #username: src_server
+  #password:
+  #host: localhost
+  #port: 5432
+
+development:
+  <<: *default
+  database: filemanager
+
+test:
+  <<: *default
+  database: filemanager_test
+
+production:
+  <<: *default
+  database: filemanager_production
+  username: src_server
+  password: <%= ENV["SRC_SERVER_DATABASE_PASSWORD"] %>
